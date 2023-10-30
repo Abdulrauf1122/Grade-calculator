@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #dbd6d6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border: 3px solid #070bff;
+            border-radius: 8px;
+            box-shadow: 1 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 70px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="number"] {
+            width: 100px;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #000000;
+            border-radius: 4px;
+        }
+
+        .btn-calculate {
+            background-color: #4caf50;
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            border: 1px solid #dd2fcb;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-calculate:hover {
+            background-color: #45a049;
+        }
+
+        .grade-result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .error {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Grade Calculator</h2>
+        <div class="input-group">
+            <label for="marks">Enter your marks:</label>
+            <input type="number" id="marks" placeholder="Enter marks" />
+        </div>
+        <button class="btn-calculate" onclick="calculateGrade()">Calculate Grade</button>
+        <!-- <div class="error" id="error-message">Please enter a valid number between 0 and 100.</div> -->
+        <p class="grade-result" id="grade"></p>
+        <div class="error" id="error-message">Please enter a valid number between 0 and 100.</div>
+    </div>
+
+    <script>
+        var inputField = document.getElementById("marks");
+        var errorDiv = document.getElementById("error-message");
+
+        function calculateGrade() {
+            var marks = inputField.value;
+            var grade = "";
+
+            if (marks >= 0 && marks <= 100) {
+                if (marks >= 80) {
+                    grade = "A+";
+                } else if (marks >= 70) {
+                    grade = "A";
+                } else if (marks >= 60) {
+                    grade = "B";
+                } else if (marks >= 50) {
+                    grade = "C";
+                } else {
+                    grade = "F";
+                }
+
+                document.getElementById("grade").innerText = "Your grade is: " + grade;
+                errorDiv.style.display = "none"; // Hide error message if valid input
+            } else {
+                document.getElementById("grade").innerText = ""; // Clear grade if invalid input
+                errorDiv.style.display = "block"; // Show error message for invalid input
+            }
+        }
+    </script>
+</body>
+
+</html>
